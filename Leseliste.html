@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leseliste</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Allgemeine Stile für die gesamte Seite */
+        body, html {
+            margin: 0; /* Entfernt den Standardabstand */
+            padding: 0; /* Entfernt den Standardabstand */
+            font-family: 'Roboto', sans-serif; /* Schriftart für die gesamte Seite */
+            background-color: #003366; /* blauer Hintergrund */
+            color: #333; /* Dunkle Schriftfarbe */
+            display: flex; /* Flexbox für zentrierten Inhalt */
+            flex-direction: column; /* Vertikale Anordnung */
+            align-items: center; /* Horizontale Zentrierung */
+        }
+
+        /* Stil für den Container */
+        .container {
+            max-width: 800px; /* Maximale Breite */
+            width: 100%; /* Volle Breite */
+            padding: 20px; /* Innenabstand */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Schatten für 3D-Effekt */
+            background-color: white; /* Weißer Hintergrund für den Container */
+            border-radius: 8px; /* Abgerundete Ecken */
+            margin-top: 20px; /* Abstand oben */
+            text-align: center; /* Text zentrieren */
+        }
+
+        /* Stil für das große Foto */
+        .profile-photo {
+            width: 100%; /* Volle Breite */
+            height: auto; /* Automatische Höhe */
+            border-radius: 8px; /* Abgerundete Ecken für das Foto */
+            margin-bottom: 20px; /* Abstand unter dem Foto */
+        }
+
+        /* Stil für die Leseliste */
+        ol.todo {
+            padding-left: 20px; /* Platz für die Nummerierung */
+            counter-reset: item; /* Zähler zurücksetzen */
+            text-align: left; /* Linksbündiger Text */
+        }
+
+        ol.todo li {
+            position: relative; /* Für die Positionierung der Pseudo-Elemente */
+            padding-left: 30px; /* Platz für den Icon */
+            margin: 10px 0; /* Abstand zwischen den Elementen */
+            background: white; /* Weißer Hintergrund */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Schatten */
+            border-radius: 5px; /* Abgerundete Ecken */
+            padding: 15px; /* Innenabstand */
+            transition: background-color 0.3s; /* Übergangseffekt */
+        }
+
+        ol.todo li:hover {
+            background-color: #e0e0e0; /* Hintergrundfarbe beim Hover */
+        }
+
+
+        /* Stil für die kürzlich gelesene Liste */
+        .reading-list {
+            list-style-type: none; /* Keine Aufzählungszeichen */
+            padding: 0; /* Entfernt Padding */
+            text-align: center; /* Zentrierter Text */
+        }
+
+        .reading-list li {
+            position: relative; /* Für die Positionierung der Pseudo-Elemente */
+            padding: 10px; /* Innenabstand */
+            margin: 10px 0; /* Abstand zwischen den Elementen */
+            background: white; /* Weißer Hintergrund */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Schatten */
+            border-radius: 5px; /* Abgerundete Ecken */
+            transition: background-color 0.3s; /* Übergangseffekt */
+        }
+
+        .reading-list li:hover {
+            background-color: #f0f0f0; /* Hintergrundfarbe beim Hover */
+        }
+
+        .star-rating {
+            color: gold; /* Farbe der Sterne */
+            margin-left: 10px; /* Abstand zwischen Text und Sternen */
+        }
+
+        .back-button {
+            margin-top: 20px; /* Abstand oben */
+            padding: 10px 20px; /* Innenabstand für den Button */
+            background-color: #4CAF50; /* Hintergrundfarbe */
+            color: white; /* Schriftfarbe */
+            border: none; /* Kein Rahmen */
+            border-radius: 5px; /* Abgerundete Ecken */
+            cursor: pointer; /* Zeiger bei Hover */
+            transition: background-color 0.3s; /* Übergangseffekt */
+        }
+
+        .back-button:hover {
+            background-color: #45a049; /* Dunklere Farbe beim Hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Großes Foto -->
+        <img src="Bücher.jpg" alt="Lisa M. Huber" class="profile-photo">
+
+        <h1>Leseliste</h1>
+        <ol class="todo">
+            <li><i class="fas fa-book"></i> Hood feminism</li>
+            <li><i class="fas fa-book"></i> Amy Tan</li>
+            <li><i class="fas fa-book"></i> The Seven Moons of Maali Almeida</li>
+            <li><i class="fas fa-book"></i> How to talk to anyone</li>
+            <li><i class="fas fa-book"></i> Predictably Irrational</li>
+            <li><i class="fas fa-book"></i> All About Love</li>
+            <li><i class="fas fa-book"></i> Start with why</li>
+            <li><i class="fas fa-book"></i> The dictionary of lost words</li>
+            <li><i class="fas fa-book"></i> This is how they tell me the world ends</li>
+        </br>
+            <!-- Füge hier weitere Informationen hinzu -->
+        </ol>
+
+        <h1>Kürzlich gelesen</h1>
+        <ul class="reading-list">
+            <li>Never split the difference<span class="star-rating">★★★★★</span></li>
+            <li>Blood oath <span class="star-rating">★★★☆☆</span></li>
+            <li>Quicksilver<span class="star-rating">★★★★★</span></li>
+            <li>Atomic habits<span class="star-rating">★★★★☆</span></li>
+            <br></br>
+        </ul>
+
+        <!-- Zurück-Button -->
+        <a href="index.html" class="back-button">Zurück zur Kontaktseite</a>
+        <a href="info.html" class="back-button">Zu meinen privaten Informationen</a>
+        <a href="Buchbewertungen.html" class="back-button">Bücher selbst bewerten</a>
+    </div>
+</body>
+</html>
+

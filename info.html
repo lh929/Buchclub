@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Seite - Lisa M. Huber</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&family=Montserrat:wght@600&display=swap" rel="stylesheet">
+    <style>
+        /* Allgemeine Stile für die gesamte Seite */
+        body, html {
+            margin: 0; /* Entfernt den Standardabstand */
+            padding: 0; /* Entfernt den Standardabstand */
+            font-family: 'Roboto', sans-serif; /* Schriftart für die gesamte Seite */
+            background-color: #053d01; /* Heller Hintergrund */
+            color: #333; /* Dunkle Schriftfarbe */
+            display: flex; /* Flexbox für zentrierten Inhalt */
+            flex-direction: column; /* Vertikale Anordnung */
+            align-items: center; /* Horizontale Zentrierung */
+        }
+
+        /* Stil für den Container */
+        .container {
+            max-width: 800px; /* Maximale Breite */
+            width: 100%; /* Volle Breite */
+            padding: 20px; /* Innenabstand */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Schatten für 3D-Effekt */
+            background-color: white; /* Weißer Hintergrund für den Container */
+            border-radius: 15px; /* Abgerundete Ecken */
+            margin-top: 20px; /* Abstand oben */
+        }
+
+        /* Stil für das große Foto */
+        .profile-photo {
+            width: 100%; /* Volle Breite */
+            height: auto; /* Automatische Höhe */
+            border-radius: 15px; /* Abgerundete Ecken für das Foto */
+            margin-bottom: 20px; /* Abstand unter dem Foto */
+            border: 5px solid #4CAF50; /* Grüner Rahmen */
+        }
+
+        /* Stil für Listen */
+        ul {
+            list-style-type: none; /* Keine Aufzählungszeichen */
+            padding: 0; /* Entfernt Padding */
+            margin: 20px 0; /* Abstand oben und unten */
+        }
+
+        /* Stil für die Listenpunkte */
+        li {
+            background: #f9f9f9; /* Heller Hintergrund für die Listenelemente */
+            border-radius: 8px; /* Abgerundete Ecken */
+            padding: 10px; /* Innenabstand */
+            margin: 10px 0; /* Abstand zwischen den Elementen */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Schatten */
+            transition: background-color 0.3s; /* Übergangseffekt */
+            align-items: center; /* Horizontale Zentrierung */
+
+        }
+
+        li:hover {
+            background-color: #e0e0e0; /* Hintergrundfarbe beim Hover */
+        }
+
+        /* Stil für die Leseliste */
+        .reading-list {
+            padding: 0; /* Entfernt Padding */
+            text-align: center; /* Zentrierter Text */
+        }
+
+        /* Stil für die Bildergalerie */
+        .gallery {
+            display: grid; /* Grid-Layout für die Galerie */
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* Flexible Spalten */
+            gap: 15px; /* Abstand zwischen den Bildern */
+            margin-top: 20px; /* Abstand über der Galerie */
+        }
+
+        .gallery img {
+            width: 100%; /* Volle Breite der Spalte */
+            height: auto; /* Automatische Höhe */
+            border-radius: 8px; /* Abgerundete Ecken für die Bilder */
+            transition: transform 0.3s; /* Übergangseffekt für Zoom */
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05); /* Leicht vergrößern beim Hover */
+        }
+
+        /* Stil für die Buttons */
+        .back-button {
+            margin-top: 20px; /* Abstand oben */
+            padding: 10px 20px; /* Innenabstand für den Button */
+            background-color: #4CAF50; /* Hintergrundfarbe */
+            color: white; /* Schriftfarbe */
+            border: none; /* Kein Rahmen */
+            border-radius: 5px; /* Abgerundete Ecken */
+            cursor: pointer; /* Zeiger bei Hover */
+            transition: background-color 0.3s; /* Übergangseffekt */
+            text-decoration: none; /* Keine Unterstreichung */
+            display: inline-block; /* Damit Links wie Buttons aussehen */
+        }
+
+        .back-button:hover {
+            background-color: #45a049; /* Dunklere Farbe beim Hover */
+        }
+
+        /* Stil für Überschriften */
+        h1, h2 {
+            font-family: 'Montserrat', sans-serif; /* Schriftart für Überschriften */
+            color: #003366; /* Dunkelblaue Farbe */
+            margin-top: 20px; /* Abstand oben */
+            text-align: center; /* Zentrierter Text */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <h1>Private Informationen</h1>
+        <ul>
+            <li>Alter: 28 Jahre</li>
+            <li>Beruf: Trainee, AOK Bayern</li>
+            <li>Hobbys: Lesen, Laufen, Freunde treffen</li>
+            <li>Wohnort: München, Deutschland</li>
+            <!-- Füge hier weitere Informationen hinzu -->
+        </ul>
+
+        <h2>Reisepläne</h2>
+        <ul class="reading-list">
+            <!-- Hier kannst du deine Bücher hinzufügen -->
+            <li>USA: Boston, New York, Washington DC, Philadelphia</li>
+            <li>Griechenland</li>
+            <li>Thailand</li>
+            <li>Alpenüberquerung</li>
+            <li>Neuseeland</li>
+            <br></br>
+            <!-- Füge hier weitere Informationen hinzu -->
+        </ul>
+
+        <!-- Galerie für kleine Bilder -->
+        <h2>Bildergalerie</h2>
+        <div class="gallery">
+            <img src="Joggen.jpg" alt="Bild 1">
+            <img src="Lisa.jpg" alt="Bild 2">
+            <img src="Lisa und Alina.JPG" alt="Bild 3">
+            <img src="Madrid.jpg" alt="Bild 4">
+            <img src="San Francisco.JPG" alt="Bild 5">
+            <img src="Abschlussfeier.JPG" alt="Bild 6">
+            <img src="Vegas.JPG" alt="Bild 7">
+            <!-- Füge hier weitere Bilder hinzu -->
+        </div>    
+
+        <!-- Zurück-Button -->
+        <a href="index.html" class="back-button">Zurück zur Kontaktseite</a>
+        <a href="Leseliste.html" class="back-button">Zur Leseliste</a>
+    </div>
+</body>
+</html>
+

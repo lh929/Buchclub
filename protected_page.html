@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geschützte Seite</title>
+    <script>
+        // Überprüfen, ob der Benutzer eingeloggt ist
+        if (localStorage.getItem("loggedIn") !== "true") {
+            window.location.href = "login.html"; // Leite zur Login-Seite, wenn nicht eingeloggt
+        }
+
+        function logout() {
+            // Den Login-Status entfernen
+            localStorage.removeItem("loggedIn");
+            window.location.href = "login.html"; // Zurück zur Login-Seite nach Logout
+        }
+    </script>
+</head>
+<body>
+    <h1>Willkommen auf der geschützten Seite!</h1>
+    <p>Du hast dich erfolgreich eingeloggt.</p>
+    <button onclick="logout()">Ausloggen</button>
+</body>
+</html>
+

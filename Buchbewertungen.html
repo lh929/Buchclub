@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buchbewertungen</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('Hintergrund.jpg'); /* Füge hier die URL deines Bildes ein */
+            background-size: cover; /* Das Bild deckt den gesamten Hintergrund ab */
+            background-position: center; /* Bild wird zentriert */
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        form {
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            max-width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .reviews {
+            margin-top: 30px;
+        }
+
+        .review {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .rating {
+            color: gold;
+            font-weight: bold;
+        }
+
+        .comment {
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        .review-buttons {
+            margin-top: 10px;
+            text-align: right;
+        }
+
+        .edit, .delete {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            margin-left: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+
+        .edit {
+            background-color: #ff9800;
+        }
+
+        .edit:hover {
+            background-color: #ff5722;
+        }
+
+        .delete:hover {
+            background-color: #d32f2f;
+        }
+
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-button:hover {
+            background-color: #45a049;
+        }
+
+        .search-bar {
+            margin: 20px 0;
+        }
+
+        .search-bar input {
+            width: 100%;
+            max-width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+
+            button, .edit, .delete, .back-button {
+                width: 100%;
+                margin: 5px 0;
+            }
+
+            .review-buttons {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Buchbewertungen</h1>
+            <!-- Bewertungsformular -->
+    <form action="bewertungen_speichern.php" method="POST">
+
+        <!-- Formular zum Hinzufügen einer Bewertung -->
+        <form id="reviewForm">
+            <label for="bookTitle">Buchtitel:</label>
+            <input type="text" id="bookTitle" name="bookTitle" placeholder="Gib den Buchtitel ein" required>
+
+            <label for="rating">Bewertung (1-5):</label>
+            <select id="rating" name="rating" required>
+                <option value="">Wähle eine Bewertung</option>
+                <option value="1">1 Stern</option>
+                <option value="2">2 Sterne</option>
+                <option value="3">3 Sterne</option>
+                <option value="4">4 Sterne</option>
+                <option value="5">5 Sterne</option>
+            </select>
+
+            <label for="comment">Kommentar:</label>
+            <textarea id="comment" name="comment" placeholder="Schreibe einen Kommentar" rows="4"></textarea>
+
+            <button type="submit" id="submitButton">Bewertung abgeben</button>
+        </form>
+
+        <!-- Suchfeld -->
+        <div class="search-bar">
+            <input type="text" id="searchBar" placeholder="Suche nach Buchtiteln" onkeyup="searchReviews()">
+        </div>
+
+        <!-- Bereich für Bewertungen -->
+        <div class="reviews" id="reviews"></div>
+
+        <!-- Zur Hauptseite-Button -->
+        <a href="index.html" class="back-button">Zurück zur Hauptseite</a>
+    </div>
+
+    <script>
+        let reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+        let editIndex = null;
+
+        // Funktion zum Anzeigen der Bewertungen
+        function displayReviews(filteredReviews = null) {
+            const reviewsContainer = document.getElementById('reviews');
+            reviewsContainer.innerHTML = '';
+
+            const displayList = filteredReviews || reviews;
+
+            if (displayList.length === 0) {
+                reviewsContainer.innerHTML = '<p>Keine Bewertungen gefunden.</p>';
+                return;
+            }
+
+            displayList.forEach((review, index) => {
+                const reviewContainer = document.createElement('div');
+                reviewContainer.classList.add('review');
+
+                reviewContainer.innerHTML = `
+                    <h3>${sanitizeHTML(review.bookTitle)}</h3>
+                    <p class="rating">Bewertung: ${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}</p>
+                    <p class="comment">${sanitizeHTML(review.comment) || 'Kein Kommentar hinzugefügt'}</p>
+                    <div class="review-buttons">
+                        <button class="edit" onclick="editReview(${index})">Bearbeiten</button>
+                        <button class="delete" onclick="deleteReview(${index})">Löschen</button>
+                    </div>
+                `;
+
+                reviewsContainer.appendChild(reviewContainer);
+            });
+        }
+
+        // Funktion zum Hinzufügen oder Bearbeiten einer Bewertung
+        document.getElementById('reviewForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const bookTitle = document.getElementById('bookTitle').value.trim();
+            const rating = parseInt(document.getElementById('rating').value); // in Zahl umwandeln
+            const comment = document.getElementById('comment').value.trim();
+
+            if (bookTitle === "" || isNaN(rating)) {
+                alert("Bitte fülle alle erforderlichen Felder aus.");
+                return;
+            }
+
+            const newReview = {
+                bookTitle,
+                rating,
+                comment
+            };
+
+            if (editIndex !== null) {
+                reviews[editIndex] = newReview; // Bewertung bearbeiten
+                editIndex = null;
+                document.getElementById('submitButton').textContent = 'Bewertung abgeben';
+            } else {
+                reviews.push(newReview); // Neue Bewertung hinzufügen
+            }
+
+            localStorage.setItem('reviews', JSON.stringify(reviews));
+            displayReviews();
+            document.getElementById('reviewForm').reset();
+        });
+
+        // Funktion zum Bearbeiten einer Bewertung
+        function editReview(index) {
+            const review = reviews[index];
+            document.getElementById('bookTitle').value = review.bookTitle;
+            document.getElementById('rating').value = review.rating;
+            document.getElementById('comment').value = review.comment;
+            editIndex = index;
+            document.getElementById('submitButton').textContent = 'Bewertung aktualisieren';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Funktion zum Löschen einer Bewertung
+        function deleteReview(index) {
+            if (confirm("Möchten Sie diese Bewertung wirklich löschen?")) {
+                reviews.splice(index, 1);
+                localStorage.setItem('reviews', JSON.stringify(reviews));
+                displayReviews();
+            }
+        }
+
+        // Suchfunktion
+        function searchReviews() {
+            const searchQuery = document.getElementById('searchBar').value.toLowerCase();
+            const filteredReviews = reviews.filter(review => review.bookTitle.toLowerCase().includes(searchQuery));
+            displayReviews(filteredReviews);
+        }
+
+        // Sanitize function to prevent XSS
+        function sanitizeHTML(str) {
+            const temp = document.createElement('div');
+            temp.textContent = str;
+            return temp.innerHTML;
+        }
+
+        // Bewertungen anzeigen, wenn die Seite geladen wird
+        displayReviews();
+    </script>
+
+</body>
+</html>
+
+
+

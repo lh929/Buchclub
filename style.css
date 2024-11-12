@@ -1,0 +1,107 @@
+/* Stil der Kontaktseite */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url('Hintergrund.jpeg'); /* Füge hier die URL deines Bildes ein */
+    background-size: cover; /* Das Bild deckt den gesamten Hintergrund ab */
+    background-position: center; /* Bild wird zentriert */
+}
+
+.contact-card {
+    background-color: rgba(255, 255, 255, 0.828); /* Hintergrundfarbe der Kontaktkarte */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 400px;
+    position: relative; /* Ermöglicht das Positionieren von Elementen relativ zur Karte */
+}
+
+/* Profilbild stilisieren */
+.profile-picture {
+    width: 220px; /* Breite des Bildes */
+    height: 200px; /* Höhe des Bildes */
+    border-radius: 50%; /* Rechteckiges Bild */
+    object-fit: cover; /* Das Bild wird im Container skaliert, ohne das Seitenverhältnis zu verändern */
+    margin-bottom: 15px; /* Abstand unter dem Bild */
+}
+
+.contact-card h1 {
+    margin-top: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.contact-card p {
+    font-size: 16px;
+    color: #666;
+}
+
+.contact-card a {
+    color: #018004;
+    text-decoration: none;
+}
+
+.contact-card a:hover {
+    text-decoration: underline;
+}
+
+.contact-card h2 {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #333;
+}
+
+/* Stil für die PDF-Seite */
+.pdf-viewer {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 800px; /* Maximale Breite der PDF-Anzeige */
+    margin: 20px auto; /* Zentrierung */
+}
+
+.pdf-viewer h1 {
+    color: #333;
+}
+
+/* Stil für die PDF-Seite */
+.pdf-viewer {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 1200px; /* Maximale Breite der PDF-Anzeige */
+    margin: 20px auto; /* Zentrierung */
+    overflow: hidden; /* Versteckt Überlauf */
+}
+
+.pdf-viewer h1 {
+    color: #333;
+    margin-bottom: 20px; /* Abstand unter der Überschrift */
+    font-size: 22px; /* Schriftgröße anpassen (z.B. 24px) */
+}
+
+.pdf-viewer p {
+    color: #666;
+}
+
+.pdf-viewer a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.pdf-viewer a:hover {
+    text-decoration: underline;
+}
+
+
+
