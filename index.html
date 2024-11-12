@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geschützte Seite</title>
+    <script>
+        // Funktion zur Passwortüberprüfung
+        function checkPassword() {
+            // Überprüfe, ob der Benutzer bereits eingeloggt ist
+            if (localStorage.getItem("isLoggedIn") !== "true") {
+                // Passwortabfrage, wenn noch nicht eingeloggt
+                var password = prompt("Bitte gib das Passwort ein:");
+                if (password === "HirschWG") {
+                    // Speichern, dass der Benutzer eingeloggt ist
+                    localStorage.setItem("isLoggedIn", "true");
+                    document.getElementById("protected-content").style.display = "block";
+                } else {
+                    window.location.href = "error.html"; // Weiterleitung zur Fehlerseite bei falschem Passwort
+                }
+            } else {
+                // Benutzer ist bereits eingeloggt, zeige den geschützten Inhalt an
+                document.getElementById("protected-content").style.display = "block";
+            }
+        }
+
+        // Funktion zum Ausloggen (optional)
+        function logout() {
+            localStorage.removeItem("isLoggedIn"); // Login-Status entfernen
+            window.location.href = "logout.html";   // Zur Logout-Seite 
+        }
+
+
+    </script>
+</head>
+<body onload="checkPassword()">
+    <div id="protected-content" style="display: none;">
+        <!-- Der geschützte Inhalt, der nur bei korrektem Passwort angezeigt wird -->
+
+        <button onclick="logout()">Ausloggen</button> <!-- Optionaler Logout-Button -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontaktdaten</title>
+    <link rel="stylesheet" href="style.css">
+
+    <div class="contact-card">
+
+        <!-- Profilbild hinzufügen -->
+        <img src="Lisa.jpg" alt="Profilbild von Lisa M. Huber" class="profile-picture">
+        
+        <h1>Lisa M. Huber</h1>
+        <p><strong>E-Mail:</strong> <a href="mailto:lisa.huber96@gmx.de">lisa.huber96@gmx.de</a></p>
+        <p><strong>Telefon:</strong> <a href="tel:+4917681382493">+49 176 81382493</a></p>
+        <p><strong>Adresse:</strong> Beblostraße 15, 81677 München, Deutschland</p>
+
+        <h2>Folge mir</h2>
+        <p>
+            <a href="www.linkedin.com/in/lisa-huber-07830b289" target="_blank">LinkedIn</a> |
+            <a href="https://github.com/lh929" target="_blank">GitHub</a>
+        </p>
+
+        <p><a href="lebenslauf.html">Lebenslauf ansehen</a></p>
+        <p></p><a href="info.html" class="back-button">Zu meinen privaten Informationen</a></p>
+        <a href="Leseliste.html" class="back-button">Zur Leseliste</a><p></p>
+        <a href="Buchbewertungen.html" class="back-button">Bücher selbst bewerten</a>
+
+    </div>
+</body>
+</html>
